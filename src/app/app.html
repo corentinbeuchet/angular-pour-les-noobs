@@ -1,0 +1,7 @@
+<h1>Ma bibliothèque</h1>
+
+<ul>
+  @for (book of books; track book.title) {
+    <li>{{ describeBook(book) }}</li>
+  }
+</ul>

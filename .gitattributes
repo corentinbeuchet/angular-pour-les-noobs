@@ -1,0 +1,4 @@
+# Fins de ligne LF dans le dépôt, quel que soit l'OS de l'étudiant
+* text=auto eol=lf
+*.ico binary
+*.png binary
