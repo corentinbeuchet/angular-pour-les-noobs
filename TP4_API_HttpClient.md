@@ -18,7 +18,7 @@ Les erreurs arrivent au format `ProblemDetail` : `{ "status": 409, "detail": "IS
 
 ## 2. Le proxy de développement
 
-L'application Angular tourne sur le port 4200, l'API sur le 8080. Pour le navigateur, ce sont deux sites différents : il bloquerait les appels (CORS). En développement, on demande à `ng serve` de **transmettre** les appels à l'API. Créez `proxy.conf.json` à la racine :
+L'application Angular tourne sur le port 4200, l'API sur le 8080. Pour le navigateur, ce sont deux origines différentes : il bloquerait les appels (CORS). En développement, on demande à `ng serve` de **transmettre** les appels à l'API. Créez `proxy.conf.json` à la racine :
 
 ```json
 {
@@ -88,7 +88,7 @@ export const routes: Routes = [
 -   Page **liste** (`BookListPage`, `/livres`) : les livres viennent de l'API, triés par le champ choisi (le tri est fait par l'API) ; la recherche du TP 3 filtre toujours dans le navigateur ; un bouton « Supprimer » par livre
 -   Page **ajout** (`BookFormPage`, `/livres/ajouter`) : un formulaire ISBN, titre, auteur, année ; après un ajout réussi, retour à la liste
 -   Les erreurs de l'API s'affichent à l'utilisateur avec le **motif** envoyé par l'API (le champ `detail`) : ISBN en double (409), livre introuvable (404)
--   Si l'API n'est pas démarrée, un message le dit clairement au lieu d'une page vide
+-   Si l'API n'est pas démarrée, un message le dit clairement au lieu d'une page vide. Attention : dans ce cas, c'est le proxy de `ng serve` qui répond, avec un code `502` (Bad Gateway) et sans `detail`
 
 ### Contraintes techniques
 

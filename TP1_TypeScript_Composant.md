@@ -22,7 +22,7 @@ Lancez `npm start` puis ouvrez http://localhost:4200 avec la console du navigate
 
 ### Exigences fonctionnelles
 
--   Rajouter l'identifiant [ISBN](https://fr.wikipedia.org/wiki/International_Standard_Book_Number) (ISBN-13 : 13 chiffres, sans tirets) à l'interface `Book`. La fonction de création devient :
+-   Ajouter l'identifiant [ISBN](https://fr.wikipedia.org/wiki/International_Standard_Book_Number) (ISBN-13 : 13 chiffres, sans tirets) à l'interface `Book`. La fonction de création devient :
     ```ts
     export function createBook(isbn: string, title: string, author: string, year: number): Book
     ```
@@ -67,5 +67,5 @@ La classe `Library` doit exposer au minimum ces méthodes (elles seront utilisé
 
 - [ ] La page affiche les deux livres, sans erreur dans la console
 - [ ] Un ISBN déjà présent ne peut pas être ajouté une deuxième fois
-- [ ] `npm run build` passe sans erreur ni `any`
+- [ ] `npm run build` passe sans erreur, et le code ne contient aucun `any`
 - [ ] Votre travail est arrivé sur `main` par une Pull Request

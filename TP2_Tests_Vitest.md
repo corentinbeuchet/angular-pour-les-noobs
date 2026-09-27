@@ -45,7 +45,16 @@ Lancez `npm test` : le test doit passer.
     -   `LibraryError extends Error`
     -   `BookNotFoundError extends LibraryError` : livre absent (recherche, suppression). `findByIsbn` et `findBookByTitle` ne renvoient plus `undefined` : elles lèvent cette erreur.
     -   `DuplicateBookError extends LibraryError` : ISBN déjà présent
--   Donnez à chaque erreur un `name` (`override readonly name = 'BookNotFoundError'`) : c'est ce qui s'affiche dans la console et dans les messages de test
+-   Donnez à chaque erreur un `name` : c'est ce qui s'affiche dans la console et dans les messages de test.
+    ```ts
+    export class LibraryError extends Error {
+      override readonly name: string = 'LibraryError'; // `: string` : sinon les classes filles ne compilent pas
+    }
+
+    export class BookNotFoundError extends LibraryError {
+      override readonly name = 'BookNotFoundError';
+    }
+    ```
 
 ### Contraintes techniques
 

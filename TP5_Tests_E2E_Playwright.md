@@ -20,6 +20,7 @@ const CI = !!process.env['CI'];
 
 export default defineConfig({
   testDir: './e2e',
+  fullyParallel: true,
   forbidOnly: CI,
   retries: CI ? 1 : 0,
   reporter: CI ? [['list'], ['html', { open: 'never' }]] : 'list',
@@ -29,7 +30,7 @@ export default defineConfig({
     { name: 'fullstack', use: { ...devices['Desktop Chrome'] }, grep: /@fullstack/ },
   ],
   // Playwright démarre lui-même l'application avant les tests
-  webServer: { command: 'npm start', url: 'http://localhost:4200', reuseExistingServer: !CI },
+  webServer: { command: 'npm start', url: 'http://localhost:4200', reuseExistingServer: !CI, timeout: 120_000 },
 });
 ```
 
@@ -80,7 +81,7 @@ Lancez `npm run e2e`, puis `npm run e2e:ui` : vous voyez le navigateur dérouler
 | Ajouter un livre | le `POST` contient le livre saisi, puis on revient sur `/livres` et le livre y est |
 | ISBN en double | le motif de l'API (409) s'affiche, on reste sur le formulaire |
 | Supprimer | le livre disparaît de la liste |
-| API arrêtée | un message prévient l'utilisateur (`route.abort()`) |
+| API arrêtée | un message prévient l'utilisateur (le proxy répond `502` : `route.fulfill({ status: 502 })`) |
 
 ### Contraintes techniques
 
@@ -112,7 +113,7 @@ Lancez `npm run e2e`, puis `npm run e2e:ui` : vous voyez le navigateur dérouler
 
 La CI n'a pas d'API Java : elle utilise la fausse. En local, vérifiez aussi l'application complète. Dans `e2e/fullstack.spec.ts`, taguez les tests `@fullstack` dans leur titre (`test.describe('avec l\'API Spring Boot @fullstack', ...)`), démarrez PostgreSQL et l'API (java-pour-les-noobs, TP 5), puis `npm run e2e:fullstack` :
 
--   la liste affiche les dix livres d'exemple de la base
+-   la liste affiche les livres d'exemple de la base (dont Clean Code)
 -   ajouter puis supprimer un livre fonctionne réellement (utilisez un ISBN différent à chaque exécution : la base garde les données)
 
 ## ✅ Terminé quand…

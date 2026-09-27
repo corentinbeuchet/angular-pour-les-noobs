@@ -15,9 +15,9 @@ Dans cette série de TP, vous allez construire pas à pas l'**interface web** de
 
 | Outil | Version |
 |---|---|
-| Node.js | 24 (LTS), par exemple depuis [nodejs.org](https://nodejs.org/) : `node -v` doit afficher `v24.x` |
+| Node.js | 24 (LTS), version 24.15 ou plus, par exemple depuis [nodejs.org](https://nodejs.org/) : vérifiez avec `node -v` |
 | npm | fourni avec Node.js |
-| Angular | 22, installé par `npm install` dans le projet (rien à installer globalement : on utilise `npm start`, `npm test`…) |
+| Angular | 22, installé par `npm ci` dans le projet (rien à installer globalement : on utilise `npm start`, `npm test`…) |
 | IDE | VS Code (extension *Angular Language Service*) ou IntelliJ IDEA / WebStorm |
 | API Java | votre projet java-pour-les-noobs du TP 4 ou du TP 5 (à partir du TP 4) |
 

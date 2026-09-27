@@ -55,7 +55,7 @@ npx ng generate component search-bar
 | Composant | Reçoit (`input`) | Émet (`output`) | Rôle |
 |---|---|---|---|
 | `BookList` | `books: readonly Book[]` (obligatoire) | | affiche la liste, ou « Aucun livre ne correspond. » |
-| `SearchBar` | | `search: string` | émet le texte à chaque frappe |
+| `SearchBar` | | `queryChange: string` | émet le texte à chaque frappe |
 | `App` | | | tient l'état et assemble les deux |
 
 ```ts
@@ -63,8 +63,10 @@ npx ng generate component search-bar
 readonly books = input.required<readonly Book[]>();
 
 // search-bar.ts
-readonly search = output<string>();
+readonly queryChange = output<string>();
 ```
+
+> ⚠️ N'appelez pas une sortie comme un événement du navigateur (`search`, `click`, `change`…) : `<input type="search">` déclenche déjà un événement `search` natif (touche Échap), qui se mélangerait à votre sortie.
 
 Dans `App`, l'état est fait de *signals*, et la liste affichée est **calculée** :
 
@@ -76,7 +78,7 @@ protected readonly visibleBooks = computed(() => /* TODO : rechercher puis trier
 ```
 
 ```html
-<app-search-bar (search)="query.set($event)" />
+<app-search-bar (queryChange)="query.set($event)" />
 <app-book-list [books]="visibleBooks()" />
 ```
 
@@ -95,7 +97,7 @@ protected readonly visibleBooks = computed(() => /* TODO : rechercher puis trier
 -   Tests unitaires pour les méthodes de tri (dont une bibliothèque vide) et un test par critère de recherche (`it.each` bienvenu)
 -   Un test par composant :
     -   `BookList` : donnez-lui des livres avec `fixture.componentRef.setInput('books', [...])`, vérifiez l'affichage **et** le message de liste vide
-    -   `SearchBar` : abonnez-vous à la sortie (`fixture.componentInstance.search.subscribe(...)`), tapez dans le champ, vérifiez ce qui est émis
+    -   `SearchBar` : abonnez-vous à la sortie (`fixture.componentInstance.queryChange.subscribe(...)`), tapez dans le champ, vérifiez ce qui est émis
     -   `App` : taper dans la recherche filtre la liste affichée
 
 ```ts
