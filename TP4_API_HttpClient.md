@@ -16,6 +16,11 @@ Dans votre projet Java : `./gradlew bootRun`. Vérifiez http://localhost:8080/bo
 
 Les erreurs arrivent au format `ProblemDetail` : `{ "status": 409, "detail": "ISBN déjà présent : …" }`.
 
+> 💡 **Vous n'avez pas fait java-pour-les-noobs ?** Deux choix :
+>
+> 1.  **Utiliser l'API d'un camarade** : clonez son dépôt java-pour-les-noobs (TP 4 ou TP 5) et lancez-le avec `./gradlew bootRun`. Le reste du TP est identique.
+> 2.  **Simuler le service**, comme en entreprise quand le back n'est pas encore prêt : une classe `FakeBookApi` avec les mêmes méthodes que `BookApi`, qui garde les livres dans un tableau et renvoie `of(...)`, ou `throwError(() => new HttpErrorResponse({ status: 409, error: { detail: '…' } }))` pour une erreur. Puis dans `app.config.ts`, ajoutez `{ provide: BookApi, useClass: FakeBookApi }` aux `providers`. C'est le même principe que le faux `BookApi` de vos tests, mais pour l'application. Respectez **le contrat du tableau ci-dessus** (codes, tri, `detail`) : le jour où vous avez une API, vous retirez cette ligne et rien d'autre ne change. Seule exigence que vous ne pourrez pas vérifier : le message « API non démarrée » (le `502` du proxy). Ce n'est pas grave.
+
 ## 2. Le proxy de développement
 
 L'application Angular tourne sur le port 4200, l'API sur le 8080. Pour le navigateur, ce sont deux origines différentes : il bloquerait les appels (CORS). En développement, on demande à `ng serve` de **transmettre** les appels à l'API. Créez `proxy.conf.json` à la racine :
@@ -116,7 +121,7 @@ request.flush([/* la réponse simulée */]);
 
 ## ✅ Terminé quand…
 
-- [ ] Avec l'API démarrée, on peut lister, trier, ajouter et supprimer des livres
+- [ ] Avec l'API démarrée (ou simulée), on peut lister, trier, ajouter et supprimer des livres
 - [ ] Ajouter un ISBN existant affiche le motif renvoyé par l'API
 - [ ] Chaque ligne du tableau de l'API est couverte par un test, sans serveur
 - [ ] Les tests des TP 2 et 3 passent toujours

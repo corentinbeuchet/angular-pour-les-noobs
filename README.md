@@ -19,7 +19,7 @@ Dans cette série de TP, vous allez construire pas à pas l'**interface web** de
 | npm | fourni avec Node.js |
 | Angular | 22, installé par `npm ci` dans le projet (rien à installer globalement : on utilise `npm start`, `npm test`…) |
 | IDE | VS Code (extension *Angular Language Service*) ou IntelliJ IDEA / WebStorm |
-| API Java | votre projet java-pour-les-noobs du TP 4 ou du TP 5 (à partir du TP 4) |
+| API Java | votre projet java-pour-les-noobs du TP 4 ou du TP 5 (à partir du TP 4), ou celui d'un camarade, ou une API simulée : voir le TP 4 |
 
 ## Démarrer
 

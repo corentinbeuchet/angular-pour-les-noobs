@@ -111,7 +111,7 @@ Lancez `npm run e2e`, puis `npm run e2e:ui` : vous voyez le navigateur dérouler
 
 ### Pour de vrai : avec votre API Java
 
-La CI n'a pas d'API Java : elle utilise la fausse. En local, vérifiez aussi l'application complète. Dans `e2e/fullstack.spec.ts`, taguez les tests `@fullstack` dans leur titre (`test.describe('avec l\'API Spring Boot @fullstack', ...)`), démarrez PostgreSQL et l'API (java-pour-les-noobs, TP 5), puis `npm run e2e:fullstack` :
+La CI n'a pas d'API Java : elle utilise la fausse. Si vous avez simulé l'API au TP 4, cette partie est facultative. Sinon, en local, vérifiez aussi l'application complète. Dans `e2e/fullstack.spec.ts`, taguez les tests `@fullstack` dans leur titre (`test.describe('avec l\'API Spring Boot @fullstack', ...)`), démarrez PostgreSQL et l'API (java-pour-les-noobs, TP 5), puis `npm run e2e:fullstack` :
 
 -   la liste affiche les livres d'exemple de la base (dont Clean Code)
 -   ajouter puis supprimer un livre fonctionne réellement (utilisez un ISBN différent à chaque exécution : la base garde les données)
@@ -120,5 +120,5 @@ La CI n'a pas d'API Java : elle utilise la fausse. En local, vérifiez aussi l'a
 
 - [ ] `npm run e2e` passe en local **et** dans la CI, sans API Java
 - [ ] Les 7 scénarios du tableau sont couverts
-- [ ] `npm run e2e:fullstack` passe avec votre API Java démarrée
+- [ ] `npm run e2e:fullstack` passe avec une API Java démarrée (la vôtre ou celle d'un camarade)
 - [ ] Le rapport Playwright est disponible dans les artefacts de la CI
