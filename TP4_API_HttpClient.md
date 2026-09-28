@@ -16,9 +16,10 @@ Dans votre projet Java : `./gradlew bootRun`. Vérifiez http://localhost:8080/bo
 
 Les erreurs arrivent au format `ProblemDetail` : `{ "status": 409, "detail": "ISBN déjà présent : …" }`.
 
-> 💡 **Pas d'API Java ?** (vous n'avez pas fait java-pour-les-noobs, ou elle ne démarre pas) Vous n'êtes pas bloqué : **simulez le service**, comme en entreprise quand le back n'est pas encore prêt. Écrivez une classe `FakeBookApi` avec les mêmes méthodes que `BookApi`, qui garde les livres dans un tableau et renvoie `of(...)`, ou `throwError(() => new HttpErrorResponse({ status: 409, error: { detail: '…' } }))` pour une erreur. Puis dans `app.config.ts`, ajoutez `{ provide: BookApi, useClass: FakeBookApi }` aux `providers`. C'est le même principe que le faux `BookApi` de vos tests, mais pour l'application.
+> 💡 **Vous n'avez pas fait java-pour-les-noobs ?** Deux choix :
 >
-> Respectez **le contrat du tableau ci-dessus** (codes, tri, `detail`) : le jour où l'API existe, vous retirez cette ligne de `app.config.ts` et rien d'autre ne change. Seule exigence que vous ne pourrez pas vérifier : le message « API non démarrée » (le `502` du proxy). Ce n'est pas grave.
+> 1.  **Utiliser l'API d'un camarade** : clonez son dépôt java-pour-les-noobs (TP 4 ou TP 5) et lancez-le avec `./gradlew bootRun`. Le reste du TP est identique.
+> 2.  **Simuler le service**, comme en entreprise quand le back n'est pas encore prêt : une classe `FakeBookApi` avec les mêmes méthodes que `BookApi`, qui garde les livres dans un tableau et renvoie `of(...)`, ou `throwError(() => new HttpErrorResponse({ status: 409, error: { detail: '…' } }))` pour une erreur. Puis dans `app.config.ts`, ajoutez `{ provide: BookApi, useClass: FakeBookApi }` aux `providers`. C'est le même principe que le faux `BookApi` de vos tests, mais pour l'application. Respectez **le contrat du tableau ci-dessus** (codes, tri, `detail`) : le jour où vous avez une API, vous retirez cette ligne et rien d'autre ne change. Seule exigence que vous ne pourrez pas vérifier : le message « API non démarrée » (le `502` du proxy). Ce n'est pas grave.
 
 ## 2. Le proxy de développement
 
