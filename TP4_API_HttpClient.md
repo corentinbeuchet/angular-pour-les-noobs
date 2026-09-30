@@ -14,7 +14,7 @@ Dans votre projet Java : `./gradlew bootRun`. Vérifiez http://localhost:8080/bo
 | `POST /books` (livre en JSON) | `201`, ou `409` si l'ISBN existe déjà |
 | `DELETE /books/{isbn}` | `204`, ou `404` si le livre n'existe pas |
 
-Les erreurs arrivent au format `ProblemDetail` : `{ "status": 409, "detail": "ISBN déjà présent : …" }`.
+Les erreurs arrivent au format `ProblemDetail` : `{ "status": 409, "detail": "Livre déjà présent : …" }`. Affichez le champ `detail` tel quel : c'est l'API qui choisit le message.
 
 > 💡 **Vous n'avez pas fait java-pour-les-noobs ?** Deux choix :
 >
